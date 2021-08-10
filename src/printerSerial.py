@@ -87,7 +87,7 @@ class job:
                     self.printer.sendCommand(line)
 
                     while True:
-                        output = self.ser.read_until('\n',1000)
+                        output = printer.ser.read_until('\n',1000)
                         self.logger.info(output[:-1])
 
                         if output[:2] == 'ok':
