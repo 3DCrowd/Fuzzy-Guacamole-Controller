@@ -4,8 +4,16 @@ import serial
 
 class printer:
     def __init__(self, port, logname='PRINTER'):
-        logging.basicConfig(filename='printer.log', level=logging.DEBUG)
-        self.logname = logname
+        self.logger = logging.getLogger(logname).setLevel(logging.DEBUG)
+
+        ch = logging.FileHandler(filename='printer.log')
+        ch.setLevel(logging.DEBUG)
+
+        formatter = logging.Formatter('%(name)s:%(levelname)s:%(message)s')
+        ch.setFormatter(formatter)
+
+        self.logger.addHandler(ch)
+
 
         self.ser = serial.Serial(port)
         self.ser.baudrate = 115200
@@ -16,14 +24,14 @@ class printer:
     def readFromSerial(self, forever=False):
         while True:
             output = self.ser.read_until('\n', 1000)
-            logging.info (f'{self.logname}:{output[:-1]}')
+            self.logger.info (f'{output[:-1]}')
             if len(output) == 0 and not forever:
-                logging.info (f'{self.logname}:Nothing More')
+                self.logger.info ('Nothing More')
                 break
 
     def sendCommand(self, command):
         ret = self.ser.write(command.encode())
-        logging.info (f'{self.logname}:Sending {command}')
+        self.logger.info (f'Sending {command}')
         return ret
 
     def closeConnection(self):
@@ -38,3 +46,42 @@ class printer:
         self.printer = printer
 
         print (os.listdir(self.ROOT_DIR + self.TODO_DIR))
+
+class job:
+    def __init__(self, fileDir, printer):
+        self.logger = logging.getLogger(os.path.basename(fileDir)[:-6])
+
+        ch = logging.FileHandler(filename='printer.log')
+        ch.setLevel(logging.DEBUG)
+
+        formatter = logging.Formatter('%(name)s:%(levelname)s:%(message)s')
+        ch.setFormatter(formatter)
+
+        self.logger.addHandler(ch)
+
+        self.fileDir = fileDir
+        self.printer = printer
+
+        self.info = {
+            'pos' : {'x': 0, 'y': 0, 'z': 0},
+            'bedTemp': 0,
+            'nozzleTemp': 0,
+            'currentLine': 0,
+        }
+
+        #Get total lines from file
+        with open(self.fileDir, 'r') as f:
+            totalLines = len(f.readlines())
+
+        self.info['totalLines'] = totalLines
+
+
+    def start(self):
+
+        with open (self.fileDir, 'r') as f:
+            for line in f:
+                if line[0] == ';' or line[0] == '\n':
+                    self.logger.info(f"Skipping: {line[:-1]}")
+                else:
+                    self.logger.info (f"Sending: {line[:-1]}")
+                    self.printer.sendCommand(line)
