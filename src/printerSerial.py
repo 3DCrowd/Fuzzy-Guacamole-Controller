@@ -85,3 +85,11 @@ class job:
                 else:
                     self.logger.info (f"Sending: {line[:-1]}")
                     self.printer.sendCommand(line)
+
+                     while True:
+                        output = self.ser.read_until('\n',1000)
+                        self.logger.info(output[:-1])
+
+                        if output[:2] == 'ok':
+                            self.logger.info("OK found")
+                            break
