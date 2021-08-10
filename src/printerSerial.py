@@ -1,10 +1,11 @@
 import logging
 import os
 import serial
+import time
 
 class printer:
     def __init__(self, port, logname='PRINTER'):
-        self.logger = logging.getLogger(logname).setLevel(logging.DEBUG)
+        self.logger = logging.getLogger(logname)
 
         ch = logging.FileHandler(filename='printer.log')
         ch.setLevel(logging.DEBUG)
