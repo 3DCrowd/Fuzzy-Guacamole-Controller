@@ -78,7 +78,6 @@ class job:
 
 
     def start(self):
-
         with open (self.fileDir, 'r') as f:
             for line in f:
                 if line[0] == ';' or line[0] == '\n':
