@@ -86,7 +86,7 @@ class job:
                     self.logger.info (f"Sending: {line[:-1]}")
                     self.printer.sendCommand(line)
 
-                     while True:
+                    while True:
                         output = self.ser.read_until('\n',1000)
                         self.logger.info(output[:-1])
 
