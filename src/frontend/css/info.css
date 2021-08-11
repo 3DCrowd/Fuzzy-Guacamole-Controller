@@ -1,0 +1,50 @@
+.info{
+  width: 30%;
+  float left;
+  height: 550px
+}
+
+.position {
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+  background-color: #fbfbfb;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 12px;
+  border-radius: 5px;
+
+  margin-bottom: 65px;
+
+}
+.position div {
+  width: 30%;
+  margin: 1.65%;
+  font-size: 12.5px;
+}
+
+.temperature {
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+  background-color: #fbfbfb;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 12px;
+  border-radius: 5px;
+
+}
+.temperature div {
+  width: 48%;
+  margin: 1%;
+  font-size: 12.5px;
+  margin-bottom: 5px;
+}
+
+.info-text{
+  background-color: #fbfbfb;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 12px;
+  border-radius: 5px;
+
+  letter-spacing: 3px;
+
+
+  float: left;
+  padding: 3px 0;
+}

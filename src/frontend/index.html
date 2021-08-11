@@ -5,6 +5,7 @@
     <title>Megatron Slicer</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/gcodeUpload.css">
+    <link rel="stylesheet" href="/css/info.css">
   </head>
   <body>
     <div class="container upload-gcode">
@@ -17,6 +18,21 @@
       </div>
 
       <button type="button" name="print-button" class="print-button" onclick="sendfile()">Print</button>
+    </div>
+
+    <div class="container info">
+      <h3>Printer info: </h3>
+      <div class="position">
+        <h5>Position: </h5>
+        <div class='info-text'>X: 0</div>
+        <div class='info-text'>Y: 0</div>
+        <div class='info-text'>Z: 0</div>
+      </div>
+      <div class="temperature">
+        <h5>Temperature: </h5>
+        <div class='info-text'>Bed: 0</div>
+        <div class='info-text'>Nozzle: 0</div>
+      </div>
     </div>
     <script src="js/main.js" charset="utf-8"></script>
   </body>

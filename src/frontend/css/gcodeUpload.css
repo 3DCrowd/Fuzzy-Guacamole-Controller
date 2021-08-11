@@ -1,6 +1,7 @@
 .upload-gcode {
   width: 50%;
   float: left;
+  height: 550px;
 }
 
 .drag-area {
