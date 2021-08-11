@@ -32,5 +32,12 @@ def printGcode ():
     else:
         return abort(400, 'Please provide a file')
 
+### Info ###
+@app.route('/api/v2/info', methods=['GET'])
+def getInfo ():
+    info = printer.info
+    return jsonify(info), 200
+
+
 if __name__ == "__main__":
     app.run("0.0.0.0", 5000, debug=True, threaded=True)

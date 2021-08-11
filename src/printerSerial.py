@@ -15,6 +15,11 @@ class printer:
 
         self.logger.addHandler(ch)
 
+        self.info = {
+            'pos' : {'x': 0, 'y': 0, 'z': 0},
+            'bedTemp': 0,
+            'nozzleTemp': 0,
+        }
 
         self.ser = serial.Serial(port)
         self.ser.baudrate = 115200
@@ -63,18 +68,12 @@ class job:
         self.fileDir = fileDir
         self.printer = printer
 
-        self.info = {
-            'pos' : {'x': 0, 'y': 0, 'z': 0},
-            'bedTemp': 0,
-            'nozzleTemp': 0,
-            'currentLine': 0,
-        }
-
         #Get total lines from file
         with open(self.fileDir, 'r') as f:
             totalLines = len(f.readlines())
 
-        self.info['totalLines'] = totalLines
+        self.printer.info['totalLines'] = totalLines
+        self.printer.info['currentLine'] = 0
 
 
     def start(self):
