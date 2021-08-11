@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Megatron Slicer</title>
+    <link rel="stylesheet" href="/css/gcodeUpload.css">
+  </head>
+  <body>
+    <div class="upload-container">
+      <h3>Upload gcode file:</h3>
+
+      <div class="drag-area">
+        <span class="header">Drag & Drop</span>
+        <span class="header">or <span class="button"> browse</span></span>
+        <input type="file" hidden />
+      </div>
+
+      <button type="button" name="print-button" class="print-button" onclick="sendfile()">Print</button>
+    </div>
+
+    <script src="js/main.js" charset="utf-8"></script>
+
+    <!-- <input type="file" name="fileUpload" value="fileUpload" id="fileUpload"> <br>
+    <button type="button" name="button" onclick='sendfile()'>Send File</button>
+     -->
+  </body>
+</html>
