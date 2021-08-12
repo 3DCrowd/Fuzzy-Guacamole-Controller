@@ -18,22 +18,24 @@
       </div>
 
       <button type="button" name="print-button" class="print-button" onclick="sendfile()">Print</button>
+      <script src="js/gcodeUpload.js" charset="utf-8"></script>
     </div>
 
     <div class="container info">
       <h3>Printer info: </h3>
       <div class="position">
         <h5>Position: </h5>
-        <div class='info-text'>X: 0</div>
-        <div class='info-text'>Y: 0</div>
-        <div class='info-text'>Z: 0</div>
+        <div class='info-text posx'>X: 0</div>
+        <div class='info-text posy'>Y: 0</div>
+        <div class='info-text posz'>Z: 0</div>
       </div>
       <div class="temperature">
         <h5>Temperature: </h5>
-        <div class='info-text'>Bed: 0</div>
-        <div class='info-text'>Nozzle: 0</div>
+        <div class='info-text bed'>Bed: 0</div>
+        <div class='info-text nozzle'>Nozzle: 0</div>
       </div>
+      <script src="js/info.js" charset="utf-8"></script>
     </div>
-    <script src="js/main.js" charset="utf-8"></script>
+
   </body>
 </html>
