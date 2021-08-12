@@ -1,9 +1,11 @@
 from flask import Flask, jsonify, request, abort
+from flask_cors import CORS
 import os
 import threading
 import printerSerial
 
 app = Flask(__name__)
+CORS(app)
 
 ### Setup ###
 UPLOAD_DIR = '/home/pi/code/todo'
