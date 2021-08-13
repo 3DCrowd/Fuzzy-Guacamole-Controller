@@ -29,6 +29,7 @@
   box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 12px;
   border-radius: 5px;
 
+  margin-bottom: 65px;
 }
 .temperature div {
   width: 48%;

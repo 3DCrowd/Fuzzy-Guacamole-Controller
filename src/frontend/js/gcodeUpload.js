@@ -4,7 +4,7 @@ const dragText = document.querySelector('.header');
 let button = dropArea.querySelector('.button');
 let input = dropArea.querySelector('input');
 
-let file;
+var file;
 
 dropArea.addEventListener('dragover', (event) => {
   event.preventDefault();

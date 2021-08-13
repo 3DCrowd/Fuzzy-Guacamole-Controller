@@ -10,10 +10,24 @@ function getInfo() {
 
     document.querySelector(".info .temperature .bed").innerHTML = 'Bed: ' + json['bedTemp']
     document.querySelector(".info .temperature .nozzle").innerHTML = 'Nozzle: ' + json['nozzleTemp']
+
+    currrentlyPrinting = document.querySelector(".info .currrentlyPrinting")
+    currrentlyPrinting.removeChild(currrentlyPrinting.lastElementChild);
+
+    if (json['printing']) {
+      header = document.createElement('h5')
+      header.innerHTML = 'Printing: ' + json['filename'];
+      currrentlyPrinting.appendChild(header)
+    } else {
+      header = document.createElement('h5')
+      header.innerHTML = 'No file currently printing';
+      currrentlyPrinting.appendChild(header)
+    }
+    console.log(json);
   })
   .catch(function (error) {
     console.log("Error: " + error);
   });
 }
 
-setInterval(getInfo, 250)
+getInfoInterval = setInterval(getInfo, 250)
