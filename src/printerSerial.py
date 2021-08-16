@@ -6,6 +6,7 @@ import time
 class printer:
     def __init__(self, port, logname='PRINTER'):
         self.logger = logging.getLogger(logname)
+        self.logger.setLevel(logging.DEBUG)
 
         ch = logging.FileHandler(filename='printer.log')
         ch.setLevel(logging.DEBUG)
@@ -19,6 +20,7 @@ class printer:
             'pos' : {'x': 0, 'y': 0, 'z': 0},
             'bedTemp': 0,
             'nozzleTemp': 0,
+            'printing': False,
         }
 
         self.ser = serial.Serial(port)
@@ -37,8 +39,69 @@ class printer:
 
     def sendCommand(self, command):
         ret = self.ser.write(command.encode())
+        self.unpackCommand(command)
         self.logger.info (f'Sending {command}')
         return ret
+
+    def getMovement(self, _command):
+        command = _command[3:]
+        separated = command.split()
+        print (separated)
+        x, y, z, speed = 0, 0, 0, 0
+        for item in separated:
+            if item[:1] == 'F':
+                speed = item[1:]
+            elif item[:1] == 'X':
+                x = item[1:]
+            elif item[:1] == 'Y':
+                y = item[1:]
+            elif item[:1] == 'Z':
+                z = item[1:]
+
+        return 'MOVEMENT', x,y,z
+
+    def getNozzleTemp(self, _command):
+        command = _command[5:]
+        separated = command.split()
+
+        for item in separated:
+            if item[:1] == 'S':
+                nozzle = item[1:]
+
+        return 'NOZZLE_TEMP', nozzle
+
+    def getBedTemp(self, _command):
+        command = _command[5:]
+        separated = command.split()
+
+        for item in separated:
+            if item[:1] == 'S':
+                bed = item[1:]
+
+        return 'BED_TEMP', bed
+
+    def getInfo(self, command):
+        if command[:2] == 'G0' or command[:2] == 'G1':
+            return self.getMovement(command)
+        elif command[:4] == 'M104' or command[:4] == 'M109':
+            return self.getNozzleTemp(command)
+        elif command[:4] == 'M140' or command[:4] == 'M190':
+            return self.getBedTemp(command)
+        elif command[:3] == 'G28':
+            return 'MOVEMENT', 0, 0, 0
+        else:
+            return 'UNSUPPORTED_COMMAND'
+
+    def unpackCommand(self, command):
+        commandResponse = self.getInfo(command)
+        if commandResponse[0] == "NOZZLE_TEMP":
+            self.info['nozzleTemp'] = float(commandResponse[1])
+        elif commandResponse[0] == "BED_TEMP":
+            self.info['bedTemp'] = float(commandResponse[1])
+        elif commandResponse[0] == "MOVEMENT":
+            self.info['pos']['x'] = float(commandResponse[1])
+            self.info['pos']['y'] = float(commandResponse[2])
+            self.info['pos']['z'] = float(commandResponse[3])
 
     def closeConnection(self):
         self.ser.close()
@@ -56,6 +119,7 @@ class printer:
 class job:
     def __init__(self, fileDir, printer):
         self.logger = logging.getLogger(os.path.basename(fileDir)[:-6])
+        self.logger.setLevel(logging.DEBUG)
 
         ch = logging.FileHandler(filename='printer.log')
         ch.setLevel(logging.DEBUG)
@@ -74,11 +138,16 @@ class job:
 
         self.printer.info['totalLines'] = totalLines
         self.printer.info['currentLine'] = 0
-
+        self.printer.info['filename'] = os.path.basename(fileDir)
 
     def start(self):
+        self.printer.info['printing'] = True
+
         with open (self.fileDir, 'r') as f:
-            for line in f:
+            lines = f.readlines()
+            for line in lines:
+                self.printer.info['currentLine'] += 1
+
                 if line[0] == ';' or line[0] == '\n':
                     self.logger.info(f"Skipping: {line[:-1]}")
                 else:
@@ -86,9 +155,10 @@ class job:
                     self.printer.sendCommand(line)
 
                     while True:
-                        output = self.printer.ser.read_until('\n',1000)
-                        self.logger.info(output[:-1])
+                        output = self.printer.ser.read_until(b'\n',1000)
+                        self.logger.info(output[:-1].decode())
 
-                        if output[:2] == 'ok':
+                        if output[:2] == b'ok':
                             self.logger.info("OK found")
                             break
+        self.printer.info['printing'] = False
