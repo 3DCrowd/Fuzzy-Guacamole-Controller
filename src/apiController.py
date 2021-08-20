@@ -43,6 +43,11 @@ def printGcode ():
 @app.route('/api/v2/info', methods=['GET'])
 def getInfo ():
     info = printer.info
+
+    if not info['printing']:
+        #Send alive check if not printing
+        printer.sendCommand(';\n')
+
     return jsonify(info), 200
 
 
