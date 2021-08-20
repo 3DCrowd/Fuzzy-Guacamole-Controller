@@ -1,5 +1,5 @@
 function getInfo() {
-  fetch("http://3dprinter.local:5000/api/v2/info",)
+  fetch("http://fuzzyguacamole.local:5000/api/v2/info",)
   .then(function (response) {
     return response.json();
   })

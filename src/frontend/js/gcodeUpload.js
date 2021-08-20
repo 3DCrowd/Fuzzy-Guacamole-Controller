@@ -58,7 +58,7 @@ function sendfile() {
     body: formData,
   }
 
-  fetch("http://3dprinter.local:5000/api/v2/print/gcode", options)
+  fetch("http://fuzzyguacamole.local:5000/api/v2/print/gcode", options)
   .then(function (response) {
     return response.json();
   })
