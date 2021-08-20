@@ -26,6 +26,7 @@ function getInfo() {
     // console.log(json);
   })
   .catch(function (error) {
+    document.getElementById('blocker').className = 'blocker';
     console.log("Error: " + error);
   });
 }
