@@ -3,13 +3,18 @@ from flask_cors import CORS
 import os
 import threading
 import printerSerial
+import getPort
+import time
 
 app = Flask(__name__)
 CORS(app)
 
 ### Setup ###
-UPLOAD_DIR = '/home/pi/code/todo'
-PORT = '/dev/ttyACM0'
+UPLOAD_DIR = '/home/pi/fuzzy-guacamole/files'
+
+time.sleep(10)
+
+PORT = getPort.getPrinterPort()
 
 printer = printerSerial.printer(PORT)
 
