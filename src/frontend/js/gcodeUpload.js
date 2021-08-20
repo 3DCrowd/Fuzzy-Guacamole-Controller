@@ -36,8 +36,8 @@ input.addEventListener('change', function () {
 
 function displayFile(){
   validExtension = 'text/x.gcode';
-
-  if (file.type == validExtension) {
+  
+  if (file.type == validExtension || file.name.split('.').pop() == 'gcode') {
     dropArea.innerHTML = '<span class="header"> "' + file.name + '" successfully uploaded </span>';
   } else {
     dropArea.removeChild(dropArea.lastElementChild);

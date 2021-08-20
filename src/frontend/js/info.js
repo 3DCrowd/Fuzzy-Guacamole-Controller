@@ -23,7 +23,7 @@ function getInfo() {
       header.innerHTML = 'No file currently printing';
       currrentlyPrinting.appendChild(header)
     }
-    console.log(json);
+    // console.log(json);
   })
   .catch(function (error) {
     console.log("Error: " + error);
