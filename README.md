@@ -18,7 +18,7 @@ Download the latest Fuzzy Guacamole `.img` file from the [releases tab](https://
 Use Balena Etcher to burn the lastest image to the sd card.
 
 #### Step 4
-If you are planning on connecting to the printer over wifi create a `wpa_supplicant.conf` as outlined [here](https://www.raspberrypi.org/documentation/computers/configuration.html#configuring-networking31) and place it in the boot partion of the sd card.
+If you are planning on connecting to the printer over wifi create a `wpa_supplicant.conf` as outlined [here](https://www.raspberrypi.org/documentation/computers/configuration.html#configuring-networking-2) and place it in the boot partion of the sd card.
 (Note: This step is not required if using a wired ethernet connection).
 
 #### Step 5
