@@ -39,6 +39,9 @@ echo "Creating directories..."
 mkdir /home/pi/fuzzy-guacamole/logs
 mkdir /home/pi/fuzzy-guacamole/files
 
+chown pi /home/pi/fuzzy-guacamole/logs
+chown pi /home/pi/fuzzy-guacamole/files
+
 echo "Creating UDEV rules..."
 rm -f /usr/local/bin/fuzzy-guacamole-trigger.sh
 echo "#!/usr/bin/bash" >> /usr/local/bin/fuzzy-guacamole-trigger.sh
