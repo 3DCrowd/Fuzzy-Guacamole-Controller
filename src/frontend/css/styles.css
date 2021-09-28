@@ -53,3 +53,69 @@ html {
 .not-blocking {
   display: none;
 }
+
+.head {
+  width: 100%;
+  background: #1683ff;
+  padding: 15px
+}
+
+.head .settingsImg {
+  height: 50px;
+  width: 50px;
+  /* float: right;
+  margin-left: 0;
+  margin-top: auto; */
+  position: absolute;
+  top: 7.5px;
+  right: 20px;
+  /* padding: 20px; */
+  border-radius: 50%;
+  background-position: center;
+  text-align: center;
+}
+
+.head .settingsImg img {
+  height: 50%;
+  margin-top: 25%;
+}
+
+.head .settingsImg:hover{
+  background-color: rgba(0,0,0,0.2);
+}
+
+.head h2 {
+  color: #fff;
+  font-size: 22.5px;
+}
+
+.navigation ul li a{
+  background: #fff;
+  padding: 20px;
+  width: 100%;
+  float:right;
+  margin-left: auto;
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+.navigation ul li a:hover {
+  background-color: rgba(245, 245, 245);
+}
+
+.navigation {
+  position: absolute;
+  right: 20px;
+  top: 63px;
+  box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+  width: 10%;
+}
+
+.navigation ul {
+  list-style-type: none;
+}
+
+.hidden {
+  display: none;
+}
