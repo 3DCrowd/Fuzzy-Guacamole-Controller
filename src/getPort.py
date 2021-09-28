@@ -8,7 +8,7 @@ logger.setLevel(logging.DEBUG)
 
 ch = logging.FileHandler(filename='/home/pi/fuzzy-guacamole/logs/printer.log')
 ch.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(name)s:%(levelname)s:%(message)s')
+formatter = logging.Formatter('%(asctime)s %(name)s:%(levelname)s:%(message)s')
 ch.setFormatter(formatter)
 
 logger.addHandler(ch)
