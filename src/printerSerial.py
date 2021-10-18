@@ -26,7 +26,7 @@ class printer:
         self.ser = serial.Serial(port)
         self.ser.baudrate = 115200
         self.ser.timeout = 5
-        time.sleep(5)
+        time.sleep(0.5)
         self.readFromSerial()
 
     def readFromSerial(self, forever=False):
