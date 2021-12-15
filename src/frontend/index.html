@@ -9,10 +9,13 @@
     <link rel="stylesheet" href="/css/camera.css">
   </head>
   <body>
-    <!-- <div class="not-blocking" id='blocker'>
+    <div class="not-blocking" id='blocker'>
       <h2>Could not connect to printer.</h2>
       <h2>Plug in or turn the printer on before trying again.</h2>
-    </div> -->
+      <br>
+      <select class="connectionSelect" name="connectionSelect" id="connectionSelect"></select>
+      <button type="button" name="again" class='again' id='again' onclick="reconnect()">Try Again</button>
+    </div>
 
 
     <div class="head">
@@ -63,9 +66,9 @@
       <script src="js/info.js" charset="utf-8"></script>
     </div>
 
-    <div class="container camera">
+    <!-- <div class="container camera">
        <iframe src="http://fuzzyguacamole.local:8080/?action=stream" height="100%" width="100%" title="Camera Feed" frameBorder="0"></iframe>
-    </div>
+    </div> -->
 
 
 

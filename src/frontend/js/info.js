@@ -1,6 +1,9 @@
 function getInfo() {
   fetch("http://fuzzyguacamole.local:5000/api/v2/info",)
   .then(function (response) {
+    if (response.status != 200){
+      console.log(response.status)
+    }
     return response.json();
   })
   .then(function (json) {
@@ -26,9 +29,58 @@ function getInfo() {
     // console.log(json);
   })
   .catch(function (error) {
+    updateConnections()
+    clearInterval(getInfoInterval)
+
+
     document.getElementById('blocker').className = 'blocker';
-    console.log("Error: " + error);
+    // console.log("Error: " + error);
   });
+}
+
+function updateConnections() {
+  fetch("http://fuzzyguacamole.local:5000/api/v2/connect/list")
+  .then(function (response) {
+      return response.json();
+    })
+    .then(function (json) {
+      var connectionSelect = document.getElementById('connectionSelect')
+      for (port in json['ports']){
+        option = document.createElement('option')
+        option.value = json['ports'][port]
+        option.innerHTML = json['ports'][port]
+
+        connectionSelect.appendChild(option)
+      }
+    });
+}
+
+function reconnect(){
+  requestJson = {
+    'port': document.getElementById('connectionSelect').value
+  }
+  document.body.style.cursor = "wait";
+  document.getElementById('again').disabled = true;
+
+  fetch("http://fuzzyguacamole.local:5000/api/v2/connect", {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json;charset=utf-8'
+    },
+    body: JSON.stringify(requestJson)
+  }).then(function(response){
+    console.log(response.status)
+
+    if (response.status == 202){
+      getInfoInterval = setInterval(getInfo, 250)
+      document.getElementById('blocker').classList.remove('blocker')
+      document.getElementById('blocker').classList.add('not-blocking')
+
+      document.body.style.cursor = "default";
+      document.getElementById('again').disabled = false;
+    }
+  }
+)
 }
 
 getInfoInterval = setInterval(getInfo, 250)
