@@ -11,7 +11,7 @@ class printer:
         ch = logging.FileHandler(filename='/home/pi/fuzzy-guacamole/logs/printer.log')
         ch.setLevel(logging.DEBUG)
 
-        formatter = logging.Formatter('%(name)s:%(levelname)s:%(message)s')
+        formatter = logging.Formatter('%(asctime)s %(name)s:%(levelname)s:%(message)s')
         ch.setFormatter(formatter)
 
         self.logger.addHandler(ch)
@@ -26,7 +26,7 @@ class printer:
         self.ser = serial.Serial(port)
         self.ser.baudrate = 115200
         self.ser.timeout = 5
-        time.sleep(5)
+        time.sleep(0.5)
         self.readFromSerial()
 
     def readFromSerial(self, forever=False):
@@ -124,7 +124,7 @@ class job:
         ch = logging.FileHandler(filename='/home/pi/fuzzy-guacamole/logs/printer.log')
         ch.setLevel(logging.DEBUG)
 
-        formatter = logging.Formatter('%(name)s:%(levelname)s:%(message)s')
+        formatter = logging.Formatter('%(asctime)s %(name)s:%(levelname)s:%(message)s')
         ch.setFormatter(formatter)
 
         self.logger.addHandler(ch)
