@@ -45,6 +45,7 @@ function updateConnections() {
     })
     .then(function (json) {
       var connectionSelect = document.getElementById('connectionSelect')
+      connectionSelect.innerHTML = ''
       for (port in json['ports']){
         option = document.createElement('option')
         option.value = json['ports'][port]
@@ -61,6 +62,7 @@ function reconnect(){
   }
   document.body.style.cursor = "wait";
   document.getElementById('again').disabled = true;
+  document.getElementById('refresh').disabled = true;
 
   fetch("http://fuzzyguacamole.local:5000/api/v2/connect", {
     method: 'POST',
@@ -76,6 +78,10 @@ function reconnect(){
       document.getElementById('blocker').classList.remove('blocker')
       document.getElementById('blocker').classList.add('not-blocking')
 
+      document.body.style.cursor = "default";
+      document.getElementById('again').disabled = false;
+      document.getElementById('refresh').disabled = false;
+    } else {
       document.body.style.cursor = "default";
       document.getElementById('again').disabled = false;
     }

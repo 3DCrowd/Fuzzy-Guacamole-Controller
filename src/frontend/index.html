@@ -11,10 +11,13 @@
   <body>
     <div class="not-blocking" id='blocker'>
       <h2>Could not connect to printer.</h2>
-      <h2>Plug in or turn the printer on before trying again.</h2>
+      <h2>Plug in or turn the printer on before choosing a port below.</h2>
       <br>
-      <select class="connectionSelect" name="connectionSelect" id="connectionSelect"></select>
-      <button type="button" name="again" class='again' id='again' onclick="reconnect()">Try Again</button>
+      <div class="form-container">
+        <select class="connectionSelect" name="connectionSelect" id="connectionSelect"></select>
+        <button type="button" name="refresh" class='btn' id='refresh' onclick="updateConnections()">Refresh Port List</button>
+        <button type="button" name="again" class='btn' id='again' onclick="reconnect()">Try Again With This Port</button>
+      </div>
     </div>
 
 
