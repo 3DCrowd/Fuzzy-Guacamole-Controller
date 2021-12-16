@@ -27,7 +27,11 @@
         <h2>printer.log</h2>
         <?php
           $printerLog = file_get_contents("/var/www/html/printer.log");
-          echo nl2br($printerLog);
+          $printerLog = explode("\n", $printerLog);
+
+          for ($i = count($printerLog); $i > 0; $i--)  {
+            echo $CodeWallTutorialArray[$i] ."<br />";
+          }
         ?>
       </div>
     </div>
