@@ -39,10 +39,11 @@ def setPort():
     global connected
 
     port = request.json['port']
+    baudrate = int(request.json['baudrate'])
 
     if port != '':
         try:
-            printer = printerSerial.printer(port)
+            printer = printerSerial.printer(port, baudrate)
             connected = True
             return jsonify({'status': 'success'}), 202
         except Exception as e:

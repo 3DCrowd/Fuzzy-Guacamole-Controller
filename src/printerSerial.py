@@ -4,7 +4,7 @@ import serial
 import time
 
 class printer:
-    def __init__(self, port, logname='PRINTER'):
+    def __init__(self, port, baudrate, logname='PRINTER'):
         self.logger = logging.getLogger(logname)
         self.logger.setLevel(logging.DEBUG)
 
@@ -24,7 +24,7 @@ class printer:
         }
 
         self.ser = serial.Serial(port)
-        self.ser.baudrate = 115200
+        self.ser.baudrate = baudrate
         self.ser.timeout = 5
         time.sleep(0.5)
         self.readFromSerial()

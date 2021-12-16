@@ -30,7 +30,13 @@
         <h2>Plug in or turn the printer on before choosing a port below.</h2>
         <br>
         <div class="form-container">
-          <select class="connectionSelect" name="connectionSelect" id="connectionSelect"></select>
+          <label for="connectionSelect">Port: </label>
+          <select class="select" name="connectionSelect" id="connectionSelect"></select>
+          <label for="baudSelect">Baud Rate: </label>
+          <select class="select baud" name="baudSelect" id="baudSelect">
+            <option value="115200">115200</option>
+            <option value="250000">250000</option>
+          </select>
           <button type="button" name="refresh" class='btn' id='refresh' onclick="updateConnections()">Refresh Port List</button>
           <button type="button" name="again" class='btn' id='again' onclick="reconnect()">Try Again With This Port</button>
         </div>

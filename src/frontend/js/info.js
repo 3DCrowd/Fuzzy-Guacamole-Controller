@@ -58,7 +58,8 @@ function updateConnections() {
 
 function reconnect(){
   requestJson = {
-    'port': document.getElementById('connectionSelect').value
+    'port': document.getElementById('connectionSelect').value,
+    'baudrate': document.getElementById('baudSelect').value
   }
   document.body.style.cursor = "wait";
   document.getElementById('again').disabled = true;
