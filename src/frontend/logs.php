@@ -30,7 +30,7 @@
           $printerLog = explode("\n", $printerLog);
 
           for ($i = count($printerLog); $i > 0; $i--)  {
-            echo $CodeWallTutorialArray[$i] ."<br />";
+            echo $printerLog[$i] ."<br />";
           }
         ?>
       </div>
