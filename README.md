@@ -1,10 +1,10 @@
 
 # Fuzzy Guacamole Controller
 
-Fuzzy Guacamole Controller is a custom Raspberry Pi OS designed to make printing as user friendly and trouble free as possible.
+Fuzzy Guacamole Controller is a custom Raspberry Pi OS designed to make 3D printing as user friendly and trouble free as possible. It provides a web interface for uploading and executing print jobs on any 3d printer that runs Marlin firmware.
 
-## Supported pi versions
-Fuzzy Guacamole Controller has only been tested on the Raspberry Pi 4 but it should work on all the currently released pis.
+## Supported technologies
+Fuzzy Guacamole Controller has only been tested on the Raspberry Pi 4 but it should work on all the currently released pis. It has been tested on 3d printers running Marlin 1 and Marlin 2 firmware.
 
 ## Installation
 
