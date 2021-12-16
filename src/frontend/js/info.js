@@ -85,6 +85,7 @@ function reconnect(){
     } else {
       document.body.style.cursor = "default";
       document.getElementById('again').disabled = false;
+      document.getElementById('refresh').disabled = false;
     }
   }
 )

@@ -26,8 +26,27 @@ class printer:
         self.ser = serial.Serial(port)
         self.ser.baudrate = baudrate
         self.ser.timeout = 5
+        self.ser.write_timeout = 5
         time.sleep(0.5)
         self.readFromSerial()
+
+        try:
+            self.ser.write(b'M115 \n')
+            fullOut = ""
+            for i in range(30):
+                out = self.ser.readline()
+                fullOut += str(out)
+                self.logger.info (out)
+                if out == b'ok\n':
+                    self.logger.info (f'Printer responded to M115')
+                    break
+        except Exception as e:
+            self.logger.error (f'Printer failed to respond to M115')
+            raise Exception ('Not a printer')
+
+        if len(fullOut) < 0:
+           self.logger.error (f'Printer failed to respond to M115')
+           raise Exception ('Not a printer')
 
     def readFromSerial(self, forever=False):
         while True:

@@ -48,7 +48,7 @@ def setPort():
             return jsonify({'status': 'success'}), 202
         except Exception as e:
             print(e)
-            return abort(500, 'Failed to connect to port. Please check if you printer is connected')
+            return abort(500, 'Failed to connect to port. Please check if your printer is connected')
     else:
         return abort(400, 'Please provide a port')
 
