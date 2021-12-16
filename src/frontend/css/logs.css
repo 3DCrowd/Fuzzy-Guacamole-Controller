@@ -1,0 +1,13 @@
+.logs-wrapper {
+  max-width: 1700px;
+  margin: 20px auto;
+}
+
+.log {
+  margin: 20px;
+  font-size: 20px;
+}
+
+.log h2 {
+  margin-block: 20px;
+}

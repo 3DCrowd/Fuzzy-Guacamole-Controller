@@ -9,18 +9,6 @@
     <link rel="stylesheet" href="/css/camera.css">
   </head>
   <body>
-    <div class="not-blocking" id='blocker'>
-      <h2>Could not connect to printer.</h2>
-      <h2>Plug in or turn the printer on before choosing a port below.</h2>
-      <br>
-      <div class="form-container">
-        <select class="connectionSelect" name="connectionSelect" id="connectionSelect"></select>
-        <button type="button" name="refresh" class='btn' id='refresh' onclick="updateConnections()">Refresh Port List</button>
-        <button type="button" name="again" class='btn' id='again' onclick="reconnect()">Try Again With This Port</button>
-      </div>
-    </div>
-
-
     <div class="head">
       <h2>Fuzzy Guacamole Dashboard</h2>
       <div class="settingsImg" onclick="document.getElementById('navigation').classList.toggle('hidden');">
@@ -31,49 +19,58 @@
 
     <div id="navigation" class="navigation hidden">
       <ul>
-        <li><a href="#">Settings</a></li>
-        <li><a href="#">Logs</a></li>
+        <li><a href="/">Dashboard</a></li>
+        <li><a href="/logs.php">Logs</a></li>
       </ul>
     </div>
 
-
-    <div class="container upload-gcode">
-      <h3>Upload gcode file:</h3>
-
-      <div class="drag-area">
-        <span class="header">Drag & Drop</span>
-        <span class="header">or <span class="button"> browse</span></span>
-        <input type="file" hidden />
+    <div class="dashboard-wrapper">
+      <div class="not-blocking" id='blocker'>
+        <h2>Could not connect to printer.</h2>
+        <h2>Plug in or turn the printer on before choosing a port below.</h2>
+        <br>
+        <div class="form-container">
+          <select class="connectionSelect" name="connectionSelect" id="connectionSelect"></select>
+          <button type="button" name="refresh" class='btn' id='refresh' onclick="updateConnections()">Refresh Port List</button>
+          <button type="button" name="again" class='btn' id='again' onclick="reconnect()">Try Again With This Port</button>
+        </div>
       </div>
 
-      <button type="button" name="print-button" class="print-button" onclick="sendfile()">Print</button>
-      <script src="js/gcodeUpload.js" charset="utf-8"></script>
+      <div class="container upload-gcode">
+        <h3>Upload gcode file:</h3>
+
+        <div class="drag-area">
+          <span class="header">Drag & Drop</span>
+          <span class="header">or <span class="button"> browse</span></span>
+          <input type="file" hidden />
+        </div>
+
+        <button type="button" name="print-button" class="print-button" onclick="sendfile()">Print</button>
+        <script src="js/gcodeUpload.js" charset="utf-8"></script>
+      </div>
+
+      <div class="container info">
+        <h3>Printer info: </h3>
+        <div class="position">
+          <h5>Position: </h5>
+          <div class='info-text posx'>X: 0</div>
+          <div class='info-text posy'>Y: 0</div>
+          <div class='info-text posz'>Z: 0</div>
+        </div>
+        <div class="temperature">
+          <h5>Temperature: </h5>
+          <div class='info-text bed'>Bed: 0</div>
+          <div class='info-text nozzle'>Nozzle: 0</div>
+        </div>
+        <div class="currrentlyPrinting">
+          <h5>No file currently printing</h5>
+        </div>
+        <script src="js/info.js" charset="utf-8"></script>
+      </div>
+
+      <!-- <div class="container camera">
+         <iframe src="http://fuzzyguacamole.local:8080/?action=stream" height="100%" width="100%" title="Camera Feed" frameBorder="0"></iframe>
+      </div> -->
     </div>
-
-    <div class="container info">
-      <h3>Printer info: </h3>
-      <div class="position">
-        <h5>Position: </h5>
-        <div class='info-text posx'>X: 0</div>
-        <div class='info-text posy'>Y: 0</div>
-        <div class='info-text posz'>Z: 0</div>
-      </div>
-      <div class="temperature">
-        <h5>Temperature: </h5>
-        <div class='info-text bed'>Bed: 0</div>
-        <div class='info-text nozzle'>Nozzle: 0</div>
-      </div>
-      <div class="currrentlyPrinting">
-        <h5>No file currently printing</h5>
-      </div>
-      <script src="js/info.js" charset="utf-8"></script>
-    </div>
-
-    <!-- <div class="container camera">
-       <iframe src="http://fuzzyguacamole.local:8080/?action=stream" height="100%" width="100%" title="Camera Feed" frameBorder="0"></iframe>
-    </div> -->
-
-
-
   </body>
 </html>

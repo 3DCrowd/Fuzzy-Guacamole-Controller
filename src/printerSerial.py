@@ -37,10 +37,11 @@ class printer:
                 self.logger.info ('Nothing More')
                 break
 
-    def sendCommand(self, command):
+    def sendCommand(self, command, log=True):
         ret = self.ser.write(command.encode())
         self.unpackCommand(command)
-        self.logger.info (f'Sending {command}')
+        if log:
+            self.logger.info (f'Sending {command}')
         return ret
 
     def getMovement(self, _command):

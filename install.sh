@@ -42,6 +42,8 @@ mkdir /home/pi/fuzzy-guacamole/files
 chown pi /home/pi/fuzzy-guacamole/logs
 chown pi /home/pi/fuzzy-guacamole/files
 
+ln -s /home/pi/fuzzy-guacamole/logs/printer.log /var/www/html/printer.log
+
 echo "Creating UDEV rules..."
 rm -f /usr/local/bin/fuzzy-guacamole-trigger.sh
 echo "#!/usr/bin/bash" >> /usr/local/bin/fuzzy-guacamole-trigger.sh

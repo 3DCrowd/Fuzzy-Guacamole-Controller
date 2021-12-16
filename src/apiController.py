@@ -85,7 +85,7 @@ def getInfo ():
 
     if not info['printing']:
         #Send alive check if not printing
-        printer.sendCommand(';\n')
+        printer.sendCommand(';\n', False)
 
     return jsonify(info), 200
 

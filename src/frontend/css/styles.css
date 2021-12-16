@@ -34,6 +34,12 @@ html {
   height: 400px;
 }
 
+.dashboard-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .blocker {
   position: absolute;
   top: 0;
@@ -90,7 +96,7 @@ html {
 .head {
   width: 100%;
   background: #1683ff;
-  padding: 15px
+  padding: 15px;
 }
 
 .head .settingsImg {
@@ -143,6 +149,7 @@ html {
   top: 63px;
   box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
   width: 10%;
+  z-index: 1;
 }
 
 .navigation ul {
