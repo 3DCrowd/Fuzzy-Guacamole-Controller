@@ -2,4 +2,4 @@ test.py
 *.pyc
 test/
 *.log
-*.gcode
+files/
