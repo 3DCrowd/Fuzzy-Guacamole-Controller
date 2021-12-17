@@ -12,6 +12,7 @@ CORS(app)
 
 ### Setup ###
 UPLOAD_DIR = '/home/pi/fuzzy-guacamole/files'
+SYSTEM_GCODE_DIR = '/home/pi/fuzzy-guacamole/system_GCODE'
 
 #time.sleep(10)
 
@@ -75,6 +76,28 @@ def printGcode ():
 
     else:
         return abort(400, 'Please provide a file')
+
+### Control ###
+@app.route('/api/v2/control/stop', methods=['POST'])
+def stopPrint():
+    if not connected:
+        return abort(503, 'Printer is Disconnected')
+
+    with open(os.path.join(SYSTEM_GCODE_DIR, 'stop.gcode'), 'r') as f:
+        for command in f.readlines():
+            printer.sendCommand(command)
+
+    return jsonify({'status': 'success'}), 200
+
+@app.route('/api/v2/control', methods=['POST'])
+def sendCommand():
+    if not connected:
+        return abort(503, 'Printer is Disconnected')
+
+    command = request.json['command']
+    printer.sendCommand(command + '\n')
+
+    return jsonify({'status': 'success'}), 200
 
 ### Info ###
 @app.route('/api/v2/info', methods=['GET'])

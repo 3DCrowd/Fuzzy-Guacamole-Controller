@@ -88,17 +88,19 @@ class printer:
             if item[:1] == 'S':
                 nozzle = item[1:]
 
-        return 'NOZZLE_TEMP', nozzle
+                return 'NOZZLE_TEMP', nozzle
 
     def getBedTemp(self, _command):
         command = _command[5:]
         separated = command.split()
 
+        self.logger.info(separated)
+
         for item in separated:
             if item[:1] == 'S':
                 bed = item[1:]
 
-        return 'BED_TEMP', bed
+                return 'BED_TEMP', bed
 
     def getInfo(self, command):
         if command[:2] == 'G0' or command[:2] == 'G1':
@@ -117,6 +119,7 @@ class printer:
         if commandResponse[0] == "NOZZLE_TEMP":
             self.info['nozzleTemp'] = float(commandResponse[1])
         elif commandResponse[0] == "BED_TEMP":
+            self.logger.info(commandResponse)
             self.info['bedTemp'] = float(commandResponse[1])
         elif commandResponse[0] == "MOVEMENT":
             self.info['pos']['x'] = float(commandResponse[1])
