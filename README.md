@@ -17,7 +17,7 @@ Open your pi's terminal.
 **Step 2**\
 Download the latest `install.sh` file using the following command:
 ```bash
-wget https://raw.githubusercontent.com/3DCrowd/fuzzy-guacamole/main/install.sh
+wget https://github.com/3DCrowd/Fuzzy-Guacamole-Controller/releases/download/v0.1.0/install.sh
 ```
 
 **Step 3**\
@@ -47,7 +47,7 @@ Finally, connect the pi to the printer with a suitable usb cable and select the 
 Download the latest version of [Balena Etcher](https://www.balena.io/etcher/).
 
 **Step 2**\
-Download the latest Fuzzy Guacamole `.img` file from the [releases tab](https://github.com/3DCrowd/fuzzy-guacamole/releases/).
+Download the latest Fuzzy Guacamole `.img.xz` file from the [releases tab](https://github.com/3DCrowd/fuzzy-guacamole/releases/).
 
 **Step 3**\
 Use Balena Etcher to burn the latest image to the sd card.
