@@ -68,9 +68,17 @@
           <div class='info-text bed'>Bed: 0</div>
           <div class='info-text nozzle'>Nozzle: 0</div>
         </div>
+
+        <div class="buttons">
+          <button type="button" name="pause" class="pause" id="pause" onclick="pause()">Pause</button>
+          <button type="button" name="resume" class="pause hidden" id="resume" onclick="pause()">Resume</button>
+          <button type="button" name="stop" class="stop" onclick="stop()">Stop</button>
+        </div>
+
         <div class="currrentlyPrinting">
           <h5>No file currently printing</h5>
         </div>
+
         <script src="js/info.js" charset="utf-8"></script>
       </div>
 

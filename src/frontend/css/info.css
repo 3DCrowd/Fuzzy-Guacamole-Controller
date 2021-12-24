@@ -49,3 +49,34 @@
   float: left;
   padding: 3px 0;
 }
+
+.buttons {
+  padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons button {
+  width: 100%;
+  padding: 10px;
+  margin: 5px;
+}
+
+.buttons .pause {
+  font-size: 15px;
+  border: none;
+  background-color: #1683ff;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.buttons .stop {
+  font-size: 15px;
+  border: none;
+  background-color: #f44336;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+}

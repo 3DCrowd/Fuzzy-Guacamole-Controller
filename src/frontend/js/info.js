@@ -91,4 +91,40 @@ function reconnect(){
 )
 }
 
+function pause() {
+  var pause = document.getElementById('pause');
+  var resume = document.getElementById('resume');
+
+  if (resume.classList.contains('hidden')){
+    fetch("http://fuzzyguacamole.local:5000/api/v2/control/pause", {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+      },
+    }).then(function(response){
+      pause.classList.toggle('hidden');
+      resume.classList.toggle('hidden');
+    })
+  } else {
+    fetch("http://fuzzyguacamole.local:5000/api/v2/control/resume", {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+      },
+    }).then(function(response){
+      pause.classList.toggle('hidden');
+      resume.classList.toggle('hidden');
+    })
+  }
+}
+
+function stop() {
+  fetch("http://fuzzyguacamole.local:5000/api/v2/control/stop", {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json;charset=utf-8'
+    },
+  })
+}
+
 getInfoInterval = setInterval(getInfo, 250)
