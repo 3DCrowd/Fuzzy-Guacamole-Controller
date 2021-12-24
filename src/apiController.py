@@ -78,6 +78,33 @@ def printGcode ():
         return abort(400, 'Please provide a file')
 
 ### Control ###
+@app.route('/api/v2/control/pause', methods=['POST'])
+def pausePrint():
+    if not connected:
+        return abort(503, 'Printer is Disconnected')
+
+    printer.info['paused'] = True
+
+    with open(os.path.join(SYSTEM_GCODE_DIR, 'pause.gcode'), 'r') as f:
+        for command in f.readlines():
+            printer.sendCommand(command)
+
+    return jsonify({'status': 'success'}), 200
+
+@app.route('/api/v2/control/resume', methods=['POST'])
+def resumePrint():
+    if not connected:
+        return abort(503, 'Printer is Disconnected')
+
+    printer.info['paused'] = False
+
+    with open(os.path.join(SYSTEM_GCODE_DIR, 'resume.gcode'), 'r') as f:
+        for command in f.readlines():
+            printer.sendCommand(command)
+
+    return jsonify({'status': 'success'}), 200
+
+
 @app.route('/api/v2/control/stop', methods=['POST'])
 def stopPrint():
     if not connected:
@@ -87,6 +114,7 @@ def stopPrint():
         for command in f.readlines():
             printer.sendCommand(command)
 
+    printer.info['printing'] = False
     return jsonify({'status': 'success'}), 200
 
 @app.route('/api/v2/control', methods=['POST'])

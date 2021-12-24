@@ -21,6 +21,7 @@ class printer:
             'bedTemp': 0,
             'nozzleTemp': 0,
             'printing': False,
+            'paused': False
         }
 
         self.ser = serial.Serial(port)
@@ -55,8 +56,21 @@ class printer:
             if len(output) == 0 and not forever:
                 self.logger.info ('Nothing More')
                 break
+    def parseCommand(self, command):
+        while '{' and '}' in command:
+            start = command.find('{') + 1
+            end = command.find('}')
+
+            query = command[start:end]
+
+            toAdd = self.info['pos'][query[4:5]] if 'pos' in query else self.info[query]
+
+            command = command[:start - 1] + str(toAdd) + command[end + 1:]
+        return command
 
     def sendCommand(self, command, log=True):
+        command = self.parseCommand(command)
+
         ret = self.ser.write(command.encode())
         self.unpackCommand(command)
         if log:
@@ -169,6 +183,12 @@ class job:
         with open (self.fileDir, 'r') as f:
             lines = f.readlines()
             for line in lines:
+                while self.printer.info['paused']:
+                    time.sleep(1)
+
+                if not self.printer.info['printing']:
+                    break
+
                 self.printer.info['currentLine'] += 1
 
                 if line[0] == ';' or line[0] == '\n':
