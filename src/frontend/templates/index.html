@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Fuzzy Guacamole Dashboard</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/gcodeUpload.css">
-    <link rel="stylesheet" href="/css/info.css">
-    <link rel="stylesheet" href="/css/camera.css">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/gcodeUpload.css">
+    <link rel="stylesheet" href="/static/info.css">
+    <link rel="stylesheet" href="/static/camera.css">
   </head>
   <body>
     <div class="head">
       <h2>Fuzzy Guacamole Dashboard</h2>
       <div class="settingsImg" onclick="document.getElementById('navigation').classList.toggle('hidden');">
-        <img src="/img/settings.png" alt="">
+        <img src="/static/settings.png" alt="">
       </div>
 
     </div>
@@ -20,7 +20,7 @@
     <div id="navigation" class="navigation hidden">
       <ul>
         <li><a href="/">Dashboard</a></li>
-        <li><a href="/logs.php">Logs</a></li>
+        <li><a href="/logs">Logs</a></li>
       </ul>
     </div>
 
@@ -52,7 +52,7 @@
         </div>
 
         <button type="button" name="print-button" class="print-button" onclick="sendfile()">Print</button>
-        <script src="js/gcodeUpload.js" charset="utf-8"></script>
+        <script src="/static/gcodeUpload.js" charset="utf-8"></script>
       </div>
 
       <div class="container info">
@@ -79,7 +79,7 @@
           <h5>No file currently printing</h5>
         </div>
 
-        <script src="js/info.js" charset="utf-8"></script>
+        <script src="/static/info.js" charset="utf-8"></script>
       </div>
 
       <!-- <div class="container camera">

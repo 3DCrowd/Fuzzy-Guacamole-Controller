@@ -11,3 +11,8 @@
 .log h2 {
   margin-block: 20px;
 }
+
+.error {
+  color: red;
+  text-align: center;
+}
