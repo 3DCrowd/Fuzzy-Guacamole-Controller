@@ -17,5 +17,3 @@ def logs():
         return render_template('logs.html', error=True, message=e)
 
     return render_template('logs.html', error=False, printerLogs=printerLogs)
-
-app.run()

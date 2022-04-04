@@ -1,5 +1,6 @@
-from flask import Flask, jsonify, request, abort
+from flask import jsonify, request, abort
 from flask_cors import CORS
+from app import app
 import os
 import threading
 import printerSerial
@@ -7,7 +8,6 @@ import printerSerial
 import serial.tools.list_ports as list_ports
 import time
 
-app = Flask(__name__)
 CORS(app)
 
 ### Setup ###

@@ -1,5 +1,5 @@
 function getInfo() {
-  fetch("http://fuzzyguacamole.local:5000/api/v2/info",)
+  fetch("http://fuzzyguacamole.local/api/v2/info",)
   .then(function (response) {
     if (response.status != 200){
       console.log(response.status)
@@ -39,7 +39,7 @@ function getInfo() {
 }
 
 function updateConnections() {
-  fetch("http://fuzzyguacamole.local:5000/api/v2/connect/list")
+  fetch("http://fuzzyguacamole.local/api/v2/connect/list")
   .then(function (response) {
       return response.json();
     })
@@ -65,7 +65,7 @@ function reconnect(){
   document.getElementById('again').disabled = true;
   document.getElementById('refresh').disabled = true;
 
-  fetch("http://fuzzyguacamole.local:5000/api/v2/connect", {
+  fetch("http://fuzzyguacamole.local/api/v2/connect", {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json;charset=utf-8'
@@ -96,7 +96,7 @@ function pause() {
   var resume = document.getElementById('resume');
 
   if (resume.classList.contains('hidden')){
-    fetch("http://fuzzyguacamole.local:5000/api/v2/control/pause", {
+    fetch("http://fuzzyguacamole.local/api/v2/control/pause", {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json;charset=utf-8'
@@ -106,7 +106,7 @@ function pause() {
       resume.classList.toggle('hidden');
     })
   } else {
-    fetch("http://fuzzyguacamole.local:5000/api/v2/control/resume", {
+    fetch("http://fuzzyguacamole.local/api/v2/control/resume", {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json;charset=utf-8'
@@ -119,7 +119,7 @@ function pause() {
 }
 
 function stop() {
-  fetch("http://fuzzyguacamole.local:5000/api/v2/control/stop", {
+  fetch("http://fuzzyguacamole.local/api/v2/control/stop", {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json;charset=utf-8'

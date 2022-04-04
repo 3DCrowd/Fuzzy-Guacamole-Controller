@@ -36,7 +36,7 @@ input.addEventListener('change', function () {
 
 function displayFile(){
   validExtension = 'text/x.gcode';
-  
+
   if (file.type == validExtension || file.name.split('.').pop() == 'gcode') {
     dropArea.innerHTML = '<span class="header"> "' + file.name + '" successfully uploaded </span>';
   } else {
@@ -58,7 +58,7 @@ function sendfile() {
     body: formData,
   }
 
-  fetch("http://fuzzyguacamole.local:5000/api/v2/print/gcode", options)
+  fetch("http://fuzzyguacamole.local/api/v2/print/gcode", options)
   .then(function (response) {
     return response.json();
   })
